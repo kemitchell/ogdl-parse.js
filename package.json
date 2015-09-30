@@ -7,12 +7,14 @@
     "json-cycle": "^1.0.5"
   },
   "devDependencies": {
+    "jison": "^0.4.15",
     "ogdl-tests": "^0.1.0",
     "tape": "^4.2.0"
   },
   "license": "MIT",
   "repository": "kemitchell/ogdl-parse.js",
   "scripts": {
-    "test": "tape test.js"
+    "test": "tape test.js",
+    "prepublish": "node generate-parser.js > parser.js"
   }
 }
