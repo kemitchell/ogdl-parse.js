@@ -7,8 +7,17 @@ IN = "\x0F"
 NEWLINE = '\n'
 
 word
-	= chars:[a-z]+ { return chars.join() }
+  = chars:[a-z]+
+    { return chars.join() }
 
 graph
-	=	name:word NEWLINE IN child:word
-		{ var result = {}; result[name] = [child]; return result; }
+  = properties:property+
+    { return properties.reduce(function(result, property) {
+        result[property.name] = property.children
+        return result }, new Object) }
+
+property
+  = name: word NEWLINE IN child:word
+    { return {
+        name: name,
+        children: [ child ] } }

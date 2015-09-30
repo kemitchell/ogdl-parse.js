@@ -62,6 +62,9 @@ tape.test('manual', function(tape) {
   tape.deepEqual(
     parse([ 'a', '  b' ].join('\n')),
     { a: ['b'] })
+  tape.deepEqual(
+    parse([ 'a', '  b', 'c', '  d' ].join('\n')),
+    { a: ['b'], c: ['d'] })
   tape.end() })
 
 // tape.test('ogdl-tests', function(tape) {
