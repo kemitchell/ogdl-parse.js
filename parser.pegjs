@@ -1,40 +1,14 @@
-char_text
-	= TEXT
+start = graph
 
-char_word
-	= char_text
+OUT = "\x0E"
 
-char_space
-	= ' '
-	/ '\t'
+IN = "\x0F"
 
-char_break
-	= '\n'
-	/ '\r'
-
-char_end
-	=
+NEWLINE = '\n'
 
 word
-	= (char_word ! '#' ! ' \'')+ (char_word ! ' \'' ! '"')*
+	= chars:[a-z]+ { return chars.join() }
 
-string
-	= ( char_text / char_space )+
-
-break
-	= '\n'
-	/ '\r'
-	/ '\r\n'
-
-quoted
-	= '\'' string '\''
-	/ '"' string '"'
-
-space
-	= char_space+
-
-space1
-	= '    '
-
-block
-	= '\\' break(space(>n)
+graph
+	=	name:word NEWLINE IN child:word
+		{ var result = {}; result[name] = [child]; return result; }
