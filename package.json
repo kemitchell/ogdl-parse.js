@@ -14,6 +14,7 @@
   "license": "MIT",
   "repository": "kemitchell/ogdl-parse.js",
   "scripts": {
+    "pretest": "npm run prepublish",
     "test": "tape test.js",
     "prepublish": "node generate-parser.js > parser.js"
   }

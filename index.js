@@ -1,7 +1,8 @@
-var retrocycle = require('json-cycle').retrocycle
 var parser = require('./parser')
+var retrocycle = require('json-cycle').retrocycle
+var markIndentation = require('./mark-indentation')
 
 module.exports = ogdlParse
 
 function ogdlParse(markup) {
-  return parser.parse(markup) }
+  retrocycle(parser.parse(markIndentation(markup))) }
